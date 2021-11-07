@@ -1,5 +1,6 @@
 .env
 *.pyc
+*.log
 __pycache__/
 db.sqlite3
 # Unit test / coverage reports
