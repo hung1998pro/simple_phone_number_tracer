@@ -24,7 +24,11 @@ class CallAPITestCase(TestCase):
 
     @patch("services.place.requests")
     def test_call_place_search_fail_status(self, mock_requests):
-        mock_requests.get.status_code = 400
+        mock_response = Mock()
+        mock_response.status_code = 400
+        mock_response.text = "Mock Response"
+        mock_requests.get.return_value = mock_response
+
         with self.assertRaises(Exception):
             address = self.address
             get_place_ids(address)
@@ -42,7 +46,10 @@ class CallAPITestCase(TestCase):
 
     @patch("services.place.requests")
     def test_call_place_detail_fail_status(self, mock_requests):
-        mock_requests.get.status_code = 400
+        mock_response = Mock()
+        mock_response.status_code = 400
+        mock_response.text = "Mock Response"
+        mock_requests.get.return_value = mock_response
         with self.assertRaises(Exception):
             place_id = self.place_id
             get_place_ids(place_id)
